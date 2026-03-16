@@ -1,0 +1,580 @@
+{% extends 'main/base.html' %}
+{% block title %}Sunrise Family — Путь к новой жизни в атмосфере заботы{% endblock %}
+{% block extra_css %}
+<style type="text/tailwindcss">
+  .about-section-bg { background: linear-gradient(135deg, var(--warm-peach) 0%, var(--cream-white) 40%, var(--muted-green) 100%); }
+  .about-blob { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; background: radial-gradient(circle, var(--deep-peach) 0%, transparent 70%); opacity: 0.5; filter: blur(40px); }
+  .about-company-photo { border-radius: 30% 70% 60% 40% / 50% 50% 50% 50%; box-shadow: 0 25px 50px -12px rgba(90, 125, 113, 0.25); transform: rotate(-2deg); }
+  @media (max-width: 767px) { .about-company-photo { transform: rotate(0deg); } }
+  .quote-callout {
+    position: relative;
+    background: var(--warm-peach);
+    border-radius: 2rem;
+    padding: 2.5rem 3rem 2.5rem 3.5rem;
+  }
+  .quote-callout::before {
+    content: '"';
+    position: absolute;
+    top: 0.75rem;
+    left: 1.25rem;
+    font-family: Georgia, serif;
+    font-size: 5rem;
+    line-height: 1;
+    color: var(--deep-peach);
+  }
+  .quote-callout::after {
+    content: '"';
+    position: absolute;
+    bottom: 0.75rem;
+    right: 1.25rem;
+    font-family: Georgia, serif;
+    font-size: 5rem;
+    line-height: 1;
+    color: var(--deep-peach);
+  }
+</style>
+{% endblock %}
+{% block content %}
+<!-- Полноэкранный блок: видео/фото на весь экран, заголовок и подзаголовок -->
+<section class="relative w-full min-h-screen flex items-center justify-center pt-20 pb-16 px-6 overflow-hidden" style="font-family: 'Outfit', sans-serif;">
+  <video class="absolute inset-0 w-full h-full object-cover" autoplay muted loop playsinline poster="{% if images.hero %}{{ images.hero.url }}{% else %}/media/site_images/hero-placeholder.jpg{% endif %}">
+    <source src="/media/hero_video.mp4" type="video/mp4">
+  </video>
+  <div class="absolute inset-0 bg-[var(--hero-earth)]/50"></div>
+  <div class="relative z-10 text-center text-white max-w-4xl mx-auto">
+    <h1 class="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-semibold leading-tight tracking-tight">Sunrise family — там где рождаются семьи</h1>
+    <p class="mt-6 text-xl sm:text-2xl opacity-95 serif-font italic text-white/95">Здесь ты найдешь свой путь</p>
+  </div>
+</section>
+
+<!-- Блок статистики: 9+ лет, 100+ участниц, 8 стран, 100% (сразу после Hero) -->
+<section class="py-24 px-6">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+    <div class="text-center space-y-4 p-8 rounded-3xl bg-[var(--warm-peach)]">
+      <span class="material-symbols-outlined text-[var(--soft-green)] text-5xl">volunteer_activism</span>
+      <h3 class="text-4xl font-black font-heading text-[var(--soft-green)]">9+ лет</h3>
+      <p class="font-medium">Искренней заботы и поддержки</p>
+    </div>
+    <div class="text-center space-y-4 p-8 rounded-3xl bg-[var(--muted-green)]">
+      <span class="material-symbols-outlined text-[var(--soft-green)] text-5xl">groups</span>
+      <h3 class="text-4xl font-black font-heading text-[var(--soft-green)]">100+</h3>
+      <p class="font-medium">Участниц каждый год</p>
+    </div>
+    <div class="text-center space-y-4 p-8 rounded-3xl bg-white border border-[var(--muted-green)]">
+      <span class="material-symbols-outlined text-[var(--soft-green)] text-5xl">public</span>
+      <h3 class="text-4xl font-black font-heading text-[var(--soft-green)]">8 стран</h3>
+      <p class="font-medium">Плюс новые направления </p>
+    </div>
+    <div class="text-center space-y-4 p-8 rounded-3xl bg-[var(--soft-green)] text-white">
+      <span class="material-symbols-outlined text-white/80 text-5xl">verified</span>
+      <h3 class="text-4xl font-black font-heading">100%</h3>
+      <p class="font-medium text-white/90">Юридическая прозрачность и поддержка</p>
+    </div>
+  </div>
+</section>
+
+<!-- Блок: опыт с 2016, 80% возвращаются (цитата в цветах проекта) -->
+<section class="py-16 px-6 bg-[var(--cream-white)]">
+  <div class="max-w-4xl mx-auto">
+    <blockquote class="quote-callout">
+      <p class="text-lg md:text-xl text-[var(--text-main)] leading-relaxed font-heading font-normal relative z-10">
+        С 2016 года Sunrise Family организует программы донорства яйцеклеток и суррогатного материнства по всему миру. Наша опытная команда продумывает каждую деталь вашего путешествия, делая его комфортным, безопасным и запоминающимся. 80% тех, кто был с нами, возвращаются снова. Вернее, от своих не уходят.
+      </p>
+    </blockquote>
+  </div>
+</section>
+
+<!-- Блок с двумя карточками: донорство и суррогатное материнство -->
+<section class="w-full flex flex-col items-center py-16 px-6 xl:px-24" style="font-family: 'Outfit', sans-serif;">
+  <h2 class="text-3xl md:text-4xl font-bold font-heading text-[var(--soft-green)] text-center mb-12">Выбери свой путь</h2>
+  <div class="relative w-full max-w-[1600px] grid grid-cols-1 lg:grid-cols-2 items-center gap-6 lg:gap-8">
+    <section class="group relative h-[600px] xl:h-[650px] hero-card-radius overflow-hidden editorial-shadow bg-[#f0ede6] transition-[box-shadow] duration-300 hover:shadow-2xl hover:shadow-[var(--hero-muted)]/25">
+      <img alt="Донорство яйцеклеток" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]" src="{% if images.donation %}{{ images.donation.url }}{% else %}https://lh3.googleusercontent.com/aida-public/AB6AXuC6Msr3gfLMFqueaErdsAF_GvejCZlBOCIJkA6IVe2YAQ1j_cB1Am80L-U9tiOlqIEtdLBJfqQiKOLSmNV1p2jnoZwufrJInqE7yQzKqD54DYWBmftzshcWhzZ0gkF6vA-z__OXruJDZsHK9VmEQjh9dkWPUNljpE_iXdOU9rjjweLIGoR6PE4Xl_IvrZkkgTqSAkm3CfiVmAmkp-PEphBcqwzupUYWCt1G7i5E0As2-kDfLOxSoGUwM3DVU2hZHOA_mI2Q9fUp9Uc{% endif %}"/>
+      <div class="absolute inset-0 image-overlay"></div>
+      <div class="relative h-full flex flex-col justify-between p-12 text-white">
+        <div class="space-y-2">
+          <span class="inline-block px-4 py-1 rounded-full border border-white/30 backdrop-blur-sm text-sm font-medium tracking-widest uppercase">Донорство</span>
+        </div>
+        <div class="space-y-6">
+          <div class="space-y-2">
+            <div class="flex items-center gap-3 text-[var(--hero-accent)]">
+              <span class="material-symbols-outlined text-2xl">flight_takeoff</span>
+              <span class="text-xl font-medium">Короткое путешествие</span>
+            </div>
+            <h2 class="text-4xl xl:text-5xl font-semibold leading-tight">Донорство яйцеклеток</h2>
+            <p class="text-xl opacity-90 serif-font italic">2–3 недели · вознаграждение от $1 500</p>
+          </div>
+          <a class="inline-flex items-center gap-4 px-8 py-4 bg-white text-[var(--hero-earth)] rounded-full font-semibold transition-all hover:bg-[var(--hero-soft-peach)] hover:gap-6" href="{% url 'donation' %}">Узнать больше <span class="material-symbols-outlined">east</span></a>
+        </div>
+      </div>
+    </section>
+    <section class="group relative h-[600px] xl:h-[650px] hero-card-radius overflow-hidden editorial-shadow bg-[#e9ece3] transition-[box-shadow] duration-300 hover:shadow-2xl hover:shadow-[var(--hero-muted)]/25">
+      <img alt="Суррогатное материнство" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]" src="{% if images.surrogacy %}{{ images.surrogacy.url }}{% else %}https://lh3.googleusercontent.com/aida-public/AB6AXuBvWvjNHdre0Omwtienyf99q9RSg7J_ZpeRB1_H9ywPUFT9Xgd1cllbTe1utm7UJY4Fsvnps9XtX4srCvvl1oMzSodTrct745ZWOSitzhs88Eu9h-3rNk3r8IlDXe1OXWCdkkPUMM-bz1wCTDROP-eIe5lj42ozfiMlKLOcrBVpKzsxH0Ab7DTe8S2mfkVh6wwcWn269jSM4rTb4ZHxcvD27vYB98nRleA7_TJ7-_6lkVT2jzORd_1FbgAWZQwzvrrewrxiIZkDAWg{% endif %}"/>
+      <div class="absolute inset-0 image-overlay"></div>
+      <div class="relative h-full flex flex-col justify-between p-12 text-white">
+        <div class="flex justify-end">
+          <span class="inline-block px-4 py-1 rounded-full border border-white/30 backdrop-blur-sm text-sm font-medium tracking-widest uppercase">Материнство</span>
+        </div>
+        <div class="space-y-6">
+          <div class="space-y-2">
+            <div class="flex items-center gap-3 text-[var(--hero-accent)]">
+              <span class="material-symbols-outlined text-2xl">sailing</span>
+              <span class="text-xl font-medium">Маленькая жизнь</span>
+            </div>
+            <h2 class="text-4xl xl:text-5xl font-semibold leading-tight">Суррогатное материнство</h2>
+            <p class="text-xl opacity-90 serif-font italic">38 недель · вознаграждение от $20 000</p>
+          </div>
+          <a class="inline-flex items-center gap-4 px-8 py-4 bg-white text-[var(--hero-earth)] rounded-full font-semibold transition-all hover:bg-[var(--hero-soft-peach)] hover:gap-6" href="{% url 'surrogacy' %}">Узнать больше <span class="material-symbols-outlined">east</span></a>
+        </div>
+      </div>
+    </section>
+  </div>
+</section>
+<div class="lg:hidden flex flex-col items-center gap-4 py-12">
+  <div class="w-px h-12 bg-[var(--hero-muted)] opacity-20"></div>
+  <span class="text-xs uppercase tracking-[0.3em] text-[var(--hero-muted)]">Выбери свой маршрут</span>
+  <div class="w-px h-12 bg-[var(--hero-muted)] opacity-20"></div>
+</div>
+
+<section id="about" class="py-24 px-6 bg-[var(--warm-peach)]/30">
+  <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center">
+    <div class="relative">
+      <div class="aspect-square rounded-full overflow-hidden border-[16px] border-white shadow-xl">
+        <img alt="Warm medical support" class="w-full h-full object-cover" src="{% if images.about %}{{ images.about.url }}{% else %}https://lh3.googleusercontent.com/aida-public/AB6AXuAGQ2MF7rWWdhIyACARBq6dsMqxZ-ysu6LJlHI3CjXjC8MIJcnSnlzQ2VqSWg8byLVuokH6Xb516QPq7K9HrySAWofWxJVoUbwx0oJKQIE5rGlQi-qCKBy0Ys-oQwnPlYLYIylNIGwdWDQkP-fC-xMC20yNTXIbzirdgh8SAni_aQsmEKSmkapFAnWo4BWyftqNy6187Z_NigQ1pntGAorUZcgQl2rDLo3G45R2bQE5WeO6VEeajU3SdUeqFuCF88fWQOtTUNZ8XpcO{% endif %}"/>
+      </div>
+      <div class="absolute -bottom-10 -right-10 bg-white p-8 rounded-3xl shadow-lg max-w-xs">
+        <p class="italic text-[var(--soft-green)]">Врач-консультант, действующий врач репродуктолог, главный врач клиники «Центр  ЭКО»</p>
+        <p class="mt-4 font-heading font-bold">— Спиридонова Екатерина Сергеевна</p>
+
+
+      </div>
+    </div>
+    <div class="space-y-8">
+      <h2 class="text-4xl md:text-5xl font-bold font-heading text-[var(--text-main)] leading-tight">Ваше здоровье — <span class="text-[var(--soft-green)]">наш главный приоритет </span></h2>
+      <div class="space-y-6 text-lg leading-relaxed text-slate-700">
+        <p class="serif-font italic text-slate-600 text-left">"Наша задача — сделать вашу программу мягкой и безопасной для здоровья. В своей практике мы используем самые современные схемы стимуляции и методы работы. На таких протоколах риск синдрома гиперстимуляции яичников составляет менее 1%."</p>
+        <p>Консультации в рамках программ донорства и материнства</p>
+      </div>
+      <div class="pt-6 flex flex-wrap gap-4">
+        <a href="https://wa.me/995501001877" target="_blank" rel="noopener noreferrer" class="nurturing-btn font-heading inline-flex items-center">Консультация</a>
+        <a href="https://spiridonava-ekaterina.taplink.ws/" target="_blank" rel="noopener noreferrer" class="nurturing-btn-alt font-heading inline-flex items-center">Запись на приём</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Секция: О компании, Процесс, Преимущества -->
+<section class="py-24 px-6 bg-[var(--cream-white)]">
+  <div class="max-w-7xl mx-auto space-y-24">
+    <!-- 1. Информация про компанию — полноширинный баннер + текст -->
+    <div class="space-y-0">
+      <div class="about-company-banner aspect-[3/1] min-h-[140px] overflow-hidden bg-[var(--muted-green)]">
+        {% if images.about %}
+        <img class="w-full h-full object-cover object-center" src="{{ images.about.url }}" alt="Команда Sunrise Family"/>
+        {% else %}
+        <div class="w-full h-full flex items-center justify-center bg-gradient-to-r from-[var(--soft-green)]/15 via-[var(--warm-peach)]/20 to-[var(--muted-green)]">
+          <span class="material-symbols-outlined text-8xl text-[var(--soft-green)]/30">groups</span>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- 4. Наши сотрудники (карусель) -->
+    <div class="space-y-10">
+      <div class="text-center max-w-2xl mx-auto">
+        <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--warm-peach)]/80 text-[var(--soft-green)] font-heading font-semibold text-sm">Команда</span>
+        <h2 class="text-3xl md:text-4xl font-bold font-heading text-[var(--text-main)] leading-tight mt-4">Наши сотрудники</h2>
+        <p class="text-lg text-slate-600 leading-relaxed serif-font mt-4">Над каждым вашим путём работают опытные кураторы, юристы и психологи — от первой консультации до возвращения домой.</p>
+      </div>
+      <div class="relative">
+        <div class="overflow-hidden">
+          <div id="team-carousel-track" class="flex gap-6 transition-transform duration-500 ease-out" style="transform: translateX(0);">
+            <div class="team-card flex-shrink-0 w-[280px] sm:w-[300px]">
+              <div class="group rounded-2xl overflow-hidden bg-white border border-[var(--muted-green)]/60 shadow-sm hover:shadow-lg hover:border-[var(--soft-green)]/30 transition-all">
+                <div class="aspect-square rounded-t-2xl overflow-hidden bg-[var(--muted-green)]">
+                  {% if images.about %}<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="{{ images.about.url }}" alt="Сотрудник"/>{% else %}<div class="w-full h-full flex items-center justify-center"><span class="material-symbols-outlined text-5xl text-[var(--soft-green)]/40">person</span></div>{% endif %}
+                </div>
+                <div class="p-4 text-center">
+                  <p class="font-heading font-bold text-[var(--text-main)]">Имя</p>
+                  <p class="text-sm text-slate-600">Должность</p>
+                </div>
+              </div>
+            </div>
+            <div class="team-card flex-shrink-0 w-[280px] sm:w-[300px]">
+              <div class="group rounded-2xl overflow-hidden bg-white border border-[var(--muted-green)]/60 shadow-sm hover:shadow-lg hover:border-[var(--soft-green)]/30 transition-all">
+                <div class="aspect-square rounded-t-2xl overflow-hidden bg-[var(--muted-green)]">
+                  <div class="w-full h-full flex items-center justify-center"><span class="material-symbols-outlined text-5xl text-[var(--soft-green)]/40">person</span></div>
+                </div>
+                <div class="p-4 text-center">
+                  <p class="font-heading font-bold text-[var(--text-main)]">Имя</p>
+                  <p class="text-sm text-slate-600">Должность</p>
+                </div>
+              </div>
+            </div>
+            <div class="team-card flex-shrink-0 w-[280px] sm:w-[300px]">
+              <div class="group rounded-2xl overflow-hidden bg-white border border-[var(--muted-green)]/60 shadow-sm hover:shadow-lg hover:border-[var(--soft-green)]/30 transition-all">
+                <div class="aspect-square rounded-t-2xl overflow-hidden bg-[var(--muted-green)]">
+                  <div class="w-full h-full flex items-center justify-center"><span class="material-symbols-outlined text-5xl text-[var(--soft-green)]/40">person</span></div>
+                </div>
+                <div class="p-4 text-center">
+                  <p class="font-heading font-bold text-[var(--text-main)]">Имя</p>
+                  <p class="text-sm text-slate-600">Должность</p>
+                </div>
+              </div>
+            </div>
+            <div class="team-card flex-shrink-0 w-[280px] sm:w-[300px]">
+              <div class="group rounded-2xl overflow-hidden bg-white border border-[var(--muted-green)]/60 shadow-sm hover:shadow-lg hover:border-[var(--soft-green)]/30 transition-all">
+                <div class="aspect-square rounded-t-2xl overflow-hidden bg-[var(--muted-green)]">
+                  <div class="w-full h-full flex items-center justify-center"><span class="material-symbols-outlined text-5xl text-[var(--soft-green)]/40">person</span></div>
+                </div>
+                <div class="p-4 text-center">
+                  <p class="font-heading font-bold text-[var(--text-main)]">Имя</p>
+                  <p class="text-sm text-slate-600">Должность</p>
+                </div>
+              </div>
+            </div>
+            <div class="team-card flex-shrink-0 w-[280px] sm:w-[300px]">
+              <div class="group rounded-2xl overflow-hidden bg-white border border-[var(--muted-green)]/60 shadow-sm hover:shadow-lg hover:border-[var(--soft-green)]/30 transition-all">
+                <div class="aspect-square rounded-t-2xl overflow-hidden bg-[var(--muted-green)]">
+                  <div class="w-full h-full flex items-center justify-center"><span class="material-symbols-outlined text-5xl text-[var(--soft-green)]/40">person</span></div>
+                </div>
+                <div class="p-4 text-center">
+                  <p class="font-heading font-bold text-[var(--text-main)]">Имя</p>
+                  <p class="text-sm text-slate-600">Должность</p>
+                </div>
+              </div>
+            </div>
+            <div class="team-card flex-shrink-0 w-[280px] sm:w-[300px]">
+              <div class="group rounded-2xl overflow-hidden bg-white border border-[var(--muted-green)]/60 shadow-sm hover:shadow-lg hover:border-[var(--soft-green)]/30 transition-all">
+                <div class="aspect-square rounded-t-2xl overflow-hidden bg-[var(--muted-green)]">
+                  <div class="w-full h-full flex items-center justify-center"><span class="material-symbols-outlined text-5xl text-[var(--soft-green)]/40">person</span></div>
+                </div>
+                <div class="p-4 text-center">
+                  <p class="font-heading font-bold text-[var(--text-main)]">Имя</p>
+                  <p class="text-sm text-slate-600">Должность</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="button" id="team-carousel-prev" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 sm:translate-x-0 z-10 w-16 h-16 rounded-full bg-white shadow-lg border-2 border-[var(--muted-green)]/60 flex items-center justify-center text-[var(--soft-green)] hover:bg-[var(--soft-green)] hover:text-white transition-all" aria-label="Назад">
+          <span class="material-symbols-outlined text-3xl">chevron_left</span>
+        </button>
+        <button type="button" id="team-carousel-next" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 sm:translate-x-0 z-10 w-16 h-16 rounded-full bg-white shadow-lg border-2 border-[var(--muted-green)]/60 flex items-center justify-center text-[var(--soft-green)] hover:bg-[var(--soft-green)] hover:text-white transition-all" aria-label="Вперёд">
+          <span class="material-symbols-outlined text-3xl">chevron_right</span>
+        </button>
+      </div>
+      <script>
+      (function() {
+        var track = document.getElementById('team-carousel-track');
+        var prev = document.getElementById('team-carousel-prev');
+        var next = document.getElementById('team-carousel-next');
+        if (!track || !prev || !next) return;
+        var cards = track.querySelectorAll('.team-card');
+        var cardCount = cards.length;
+        for (var i = 0; i < cardCount; i++) {
+          track.appendChild(cards[i].cloneNode(true));
+        }
+        var totalCards = cardCount * 2;
+        var cardWidth = 280;
+        var gap = 24;
+        var step = cardWidth + gap;
+        var index = 0;
+        function getStep() {
+          var first = track.querySelector('.team-card');
+          if (first) {
+            var style = window.getComputedStyle(first);
+            var w = first.offsetWidth;
+            var gapNum = parseFloat(style.marginRight) || 24;
+            return w + gapNum;
+          }
+          return step;
+        }
+        function updateTransform(noTransition) {
+          if (noTransition) track.style.transition = 'none';
+          var offset = -index * step;
+          track.style.transform = 'translateX(' + offset + 'px)';
+          if (noTransition) {
+            requestAnimationFrame(function() { track.style.transition = ''; });
+          }
+        }
+        prev.addEventListener('click', function() {
+          step = getStep();
+          if (index === 0) {
+            index = totalCards - 1;
+            updateTransform(true);
+          } else {
+            index--;
+            updateTransform();
+          }
+        });
+        next.addEventListener('click', function() {
+          step = getStep();
+          if (index === totalCards - 1) {
+            index = 0;
+            updateTransform(true);
+          } else {
+            index++;
+            updateTransform();
+          }
+        });
+        updateTransform();
+      })();
+      </script>
+    </div>
+  </div>
+</section>
+
+<section class="py-24 px-6 space-y-32">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16" id="donation">
+    <div class="w-full md:w-1/2 space-y-8">
+      <h3 class="text-4xl font-bold font-heading text-[var(--soft-green)]">Дар жизни: Донорство яйцеклеток</h3>
+      <p class="text-lg leading-relaxed">Помогите мечте сбыться. Ваше участие подарит надежду семье, а мы обеспечим вам не только достойную благодарность, но и полную медицинскую заботу.</p>
+      <ul class="space-y-4">
+        <li class="flex items-center gap-3"><span class="material-symbols-outlined text-[var(--soft-green)]">check_circle</span> Вознаграждение до $1 500</li>
+        <li class="flex items-center gap-3"><span class="material-symbols-outlined text-[var(--soft-green)]">check_circle</span> Бережное медицинское сопровождение</li>
+        <li class="flex items-center gap-3"><span class="material-symbols-outlined text-[var(--soft-green)]">check_circle</span> Оплачиваемый отдых и перелеты</li>
+      </ul>
+      <div class="bg-[var(--warm-peach)] p-8 rounded-[2.5rem] shadow-inner space-y-6 border border-[var(--deep-peach)]/50">
+        <div class="space-y-2">
+          <h4 class="font-heading font-bold text-xl text-[var(--text-main)]">Сделать первый шаг</h4>
+          <p class="text-sm text-slate-600 italic">Оставьте заявку, чтобы просто узнать подробности без обязательств.</p>
+        </div>
+        <form id="donation" method="post" action="" class="space-y-4">
+          {% csrf_token %}
+          <input type="hidden" name="form_id" value="donation">
+          {{ donation_form.name }}
+          <div class="grid grid-cols-2 gap-4">
+            {{ donation_form.phone }}
+            {{ donation_form.age }}
+          </div>
+          <button class="w-full nurturing-btn font-heading text-sm py-4" type="submit">Узнать о донорстве</button>
+        </form>
+      </div>
+    </div>
+    <div class="w-full md:w-1/2">
+      <img alt="Happy woman" class="rounded-[3rem] shadow-xl w-full" src="{% if images.donation %}{{ images.donation.url }}{% else %}https://lh3.googleusercontent.com/aida-public/AB6AXuCrr5BrjllwRdAgOR5QpMZe_xJhOgMoY8DClQ1XW-YwjiKMSzey0WIgL2qTIJ6T6np4oZvvuvCNwss8ijmby6L_k54XJbSPZ5fGTa0Ogu2ruLarNUpb05y1ZJm__ZUs93b0QO5mfP_8HHKkjE0R14x1VWEudZ81BQzN9TZjXzO8x_y5YrLvA_dq1SDNvZX5z2cmQDM7JRodBx0_511R1lwLDhmDU3CQ_mLljJMTjpLmKaGro7ZfQLPyfAldCXsnOE6zcGJRyljtJ6uK{% endif %}"/>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row-reverse items-center gap-16" id="surrogacy">
+    <div class="w-full md:w-1/2 space-y-8">
+      <h3 class="text-4xl font-bold font-heading text-[var(--text-main)]">Путь героя: Суррогатное материнство</h3>
+      <p class="text-lg leading-relaxed">Это история о высшем проявлении человечности. Мы станем вашей опорой 24/7, обеспечим комфортное жилье, лучшее питание и психологическую поддержку.</p>
+      <ul class="space-y-4">
+        <li class="flex items-center gap-3"><span class="material-symbols-outlined text-[var(--soft-green)]">check_circle</span> Компенсация от $20 000</li>
+        <li class="flex items-center gap-3"><span class="material-symbols-outlined text-[var(--soft-green)]">check_circle</span> Личный куратор и психолог</li>
+        <li class="flex items-center gap-3"><span class="material-symbols-outlined text-[var(--soft-green)]">check_circle</span> Программы в Тбилиси и Бишкеке</li>
+      </ul>
+      <div class="bg-[var(--warm-peach)] p-8 rounded-[2.5rem] shadow-inner space-y-6 border border-[var(--deep-peach)]/50">
+        <div class="space-y-2">
+          <h4 class="font-heading font-bold text-xl text-[var(--text-main)]">Начать душевный диалог</h4>
+          <p class="text-sm text-slate-600 italic">Мы свяжемся с вами, чтобы мягко ответить на все ваши вопросы.</p>
+        </div>
+        <form id="surrogacy" method="post" action="" class="space-y-4">
+          {% csrf_token %}
+          <input type="hidden" name="form_id" value="surrogacy">
+          {{ surrogacy_form.name }}
+          <div class="grid grid-cols-2 gap-4">
+            {{ surrogacy_form.phone }}
+            {{ surrogacy_form.city }}
+          </div>
+          <button class="w-full nurturing-btn font-heading text-sm py-4" type="submit">Стать частью чуда</button>
+        </form>
+      </div>
+    </div>
+    <div class="w-full md:w-1/2">
+      <img alt="Supportive mother figure" class="rounded-[3rem] shadow-xl w-full" src="{% if images.surrogacy %}{{ images.surrogacy.url }}{% else %}https://lh3.googleusercontent.com/aida-public/AB6AXuBrs132aRnk24kbBLXQtFoTrfUGNE84NkSXgmRqydHe_fULIzfyAp0du89ibBhvQBus472EGkwz_AQc-FXfMZCE3Yv2vA7L5Z3P5W4prM4kBgCe4G2mxytDFqxgw8X3lc3geexXnZ_9SRIaBn1lxnC6UcE6RyMeRDckG2vgL1omdE6W35W1TrvhHRAmpHNN6ptGBi2c7SnXKM0Qh3c-FPVV-YUcF8DNSxNzKnhBYA0Q2EGjs8x7-ElSv7UF579MYq0-HB6f4m9pF6sJ{% endif %}"/>
+    </div>
+  </div>
+</section>
+
+<section class="py-24 px-6 bg-[var(--muted-green)] relative overflow-hidden">
+  <div class="max-w-7xl mx-auto text-center space-y-16">
+    <h2 class="text-4xl font-bold font-heading">Ваш бережный путь в 5 шагов</h2>
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-4 relative">
+      <div class="p-8 soft-card rounded-[2rem] space-y-4 z-10">
+        <div class="w-12 h-12 bg-[var(--soft-green)] text-white rounded-full flex items-center justify-center font-bold font-heading mx-auto">1</div>
+        <h4 class="font-bold font-heading">Теплый прием</h4>
+        <p class="text-sm">Первая консультация и анкета в уютной обстановке.</p>
+      </div>
+      <div class="p-8 soft-card rounded-[2rem] space-y-4 z-10">
+        <div class="w-12 h-12 bg-[var(--deep-peach)] text-[var(--text-main)] rounded-full flex items-center justify-center font-bold font-heading mx-auto">2</div>
+        <h4 class="font-bold font-heading">Забота о здоровье</h4>
+        <p class="text-sm">Полное и бесплатное обследование организма.</p>
+      </div>
+      <div class="p-8 soft-card rounded-[2rem] space-y-4 z-10">
+        <div class="w-12 h-12 bg-[var(--soft-green)] text-white rounded-full flex items-center justify-center font-bold font-heading mx-auto">3</div>
+        <h4 class="font-bold font-heading">Юридический щит</h4>
+        <p class="text-sm">Прозрачный договор, защищающий ваши интересы.</p>
+      </div>
+      <div class="p-8 soft-card rounded-[2rem] space-y-4 z-10">
+        <div class="w-12 h-12 bg-[var(--deep-peach)] text-[var(--text-main)] rounded-full flex items-center justify-center font-bold font-heading mx-auto">4</div>
+        <h4 class="font-bold font-heading">Поддержка 24/7</h4>
+        <p class="text-sm">Постоянная связь с куратором и подготовка.</p>
+      </div>
+      <div class="p-8 bg-[var(--soft-green)] text-white rounded-[2rem] space-y-4 z-10 shadow-lg">
+        <div class="w-12 h-12 bg-white text-[var(--soft-green)] rounded-full flex items-center justify-center font-bold font-heading mx-auto">5</div>
+        <h4 class="font-bold font-heading">Новая жизнь</h4>
+        <p class="text-sm">Начало программы и радость свершения.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-24 px-6" id="stories">
+  <div class="max-w-7xl mx-auto space-y-16">
+    <div class="text-center max-w-3xl mx-auto space-y-4">
+      <h2 class="text-4xl font-bold font-heading">Личные истории, согревающие сердце</h2>
+      <p class="text-lg italic">Участники наших программ делятся своими чувствами и результатами.</p>
+    </div>
+    {% if story_list %}
+    <div class="relative">
+      <div class="overflow-hidden">
+        <div id="stories-track" class="flex transition-transform duration-300 ease-out" style="width: calc(100% * {{ story_list|length }});">
+          {% for story in story_list %}
+          <div class="story-slide flex-shrink-0 w-full" style="width: calc(100% / {{ story_list|length }});">
+            <div class="bg-white p-10 rounded-[3rem] shadow-sm border border-[var(--muted-green)] space-y-6 max-w-2xl mx-auto">
+              <div class="flex items-center gap-6">
+                <img alt="{{ story.name }}" class="w-20 h-20 rounded-full object-cover" src="{% if story.photo %}{{ story.photo.url }}{% elif forloop.first %}{% if images.story_1 %}{{ images.story_1.url }}{% else %}https://lh3.googleusercontent.com/aida-public/AB6AXuAQMrCQi4dfRQzjKCTQ-AuqFQHFm9P0r0XZj7P9AsW1yVg0Gx9qLERBg46Dd4G-_phpGocQNuc2JCePj0Cq5hNyjI034ehUviNMqFEh-72skHWlHcMx8q6_nklwyry0pi_qBjLmmPrRdrgxZc1fIkpMuFyGTmG4-HyXWWuu5DPeZ0OXq-Qs3B5of9_jgkF096zfKGp_JCbuaGLUh5BgAa_uQ2uKL1fdp9vx13tFu9F6BSZxYaxdq9qzWx2gW814aPRlbkNkQWxfrf1d{% endif %}{% else %}{% if images.story_2 %}{{ images.story_2.url }}{% else %}https://lh3.googleusercontent.com/aida-public/AB6AXuARhnmuSzcsgNQdzwbgK1rcR9buP80zEhEcrslOgCJ879zZIr3Dp_IF50YQTe3AYC3Uf5hxigVNes4WoRiClROxxIgfPKu0iJKacioHlCtDHCj_RhoSTPgB5a62Df2TqChLSZRx9ZAIbw1fN-dF5bhcbvQlvCqD-Rykfwweg7i61_vw_Ab52L6WzTWBnuDM3LNAZ2iRspJjPaGBR8fqAWrRypRmd-rXl8X0l4ZhmM_G6Sn0YgpR0L_lqiRksN_IYS7_zUeP5tgvfBoE{% endif %}{% endif %}"/>
+                <div>
+                  <h4 class="font-bold font-heading text-xl">{{ story.name }}, {{ story.role }}</h4>
+                  <p class="text-sm text-slate-500 italic">{{ story.tagline }}</p>
+                </div>
+              </div>
+              <p class="text-lg italic leading-relaxed">{{ story.testimonial }}</p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      <button type="button" id="stories-prev" class="absolute left-0 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-lg border border-[var(--muted-green)] flex items-center justify-center text-[var(--soft-green)] hover:bg-[var(--soft-green)] hover:text-white transition-all" aria-label="Предыдущая история">
+        <span class="material-symbols-outlined">chevron_left</span>
+      </button>
+      <button type="button" id="stories-next" class="absolute right-0 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-lg border border-[var(--muted-green)] flex items-center justify-center text-[var(--soft-green)] hover:bg-[var(--soft-green)] hover:text-white transition-all" aria-label="Следующая история">
+        <span class="material-symbols-outlined">chevron_right</span>
+      </button>
+      <div id="stories-dots" class="flex justify-center gap-2 mt-8"></div>
+    </div>
+    <script>
+    (function() {
+      var track = document.getElementById('stories-track');
+      var total = {{ story_list|length }};
+      var container = track ? track.parentElement : null;
+      var perView = 1;
+      var current = 0;
+      var slideWidthPct = container ? (100 / total) : 100;
+      var trackWidthPct = total * 100;
+      function update() {
+        if (!track) return;
+        track.style.width = trackWidthPct + '%';
+        var slides = track.querySelectorAll('.story-slide');
+        slides.forEach(function(s) { s.style.width = slideWidthPct + '%'; });
+        track.style.transform = 'translateX(-' + (current * 100 / total) + '%)';
+      }
+      function buildDots() {
+        var dotsEl = document.getElementById('stories-dots');
+        if (!dotsEl || total <= 1) return;
+        dotsEl.innerHTML = '';
+        for (var i = 0; i < total; i++) {
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'w-2.5 h-2.5 rounded-full transition-all ' + (i === current ? 'bg-[var(--soft-green)] scale-110' : 'bg-[var(--muted-green)]');
+          btn.setAttribute('aria-label', 'История ' + (i + 1));
+          (function(idx) { btn.addEventListener('click', function() { current = idx; update(); buildDots(); }); })(i);
+          dotsEl.appendChild(btn);
+        }
+      }
+      update();
+      buildDots();
+      var prevBtn = document.getElementById('stories-prev');
+      var nextBtn = document.getElementById('stories-next');
+      if (prevBtn) prevBtn.addEventListener('click', function() { current = (current - 1 + total) % total; update(); buildDots(); });
+      if (nextBtn) nextBtn.addEventListener('click', function() { current = (current + 1) % total; update(); buildDots(); });
+    })();
+    </script>
+    {% else %}
+    <div class="grid md:grid-cols-2 gap-12">
+      <div class="bg-white p-10 rounded-[3rem] shadow-sm border border-[var(--muted-green)] space-y-6">
+        <div class="flex items-center gap-6">
+          <img alt="Elena" class="w-20 h-20 rounded-full object-cover" src="{% if images.story_1 %}{{ images.story_1.url }}{% else %}https://lh3.googleusercontent.com/aida-public/AB6AXuAQMrCQi4dfRQzjKCTQ-AuqFQHFm9P0r0XZj7P9AsW1yVg0Gx9qLERBg46Dd4G-_phpGocQNuc2JCePj0Cq5hNyjI034ehUviNMqFEh-72skHWlHcMx8q6_nklwyry0pi_qBjLmmPrRdrgxZc1fIkpMuFyGTmG4-HyXWWuu5DPeZ0OXq-Qs3B5of9_jgkF096zfKGp_JCbuaGLUh5BgAa_uQ2uKL1fdp9vx13tFu9F6BSZxYaxdq9qzWx2gW814aPRlbkNkQWxfrf1d{% endif %}"/>
+          <div>
+            <h4 class="font-bold font-heading text-xl">Елена, донор</h4>
+            <p class="text-sm text-slate-500 italic">"Помогла обрести счастье другим"</p>
+          </div>
+        </div>
+        <p class="text-lg italic leading-relaxed">"Для меня это не было просто процедурой. Это был момент, когда я поняла, что могу изменить чью-то жизнь. В Sunrise Family меня встретили как родную. Весь процесс прошел в атмосфере полного доверия."</p>
+      </div>
+      <div class="bg-white p-10 rounded-[3rem] shadow-sm border border-[var(--muted-green)] space-y-6">
+        <div class="flex items-center gap-6">
+          <img alt="Maria" class="w-20 h-20 rounded-full object-cover" src="{% if images.story_2 %}{{ images.story_2.url }}{% else %}https://lh3.googleusercontent.com/aida-public/AB6AXuARhnmuSzcsgNQdzwbgK1rcR9buP80zEhEcrslOgCJ879zZIr3Dp_IF50YQTe3AYC3Uf5hxigVNes4WoRiClROxxIgfPKu0iJKacioHlCtDHCj_RhoSTPgB5a62Df2TqChLSZRx9ZAIbw1fN-dF5bhcbvQlvCqD-Rykfwweg7i61_vw_Ab52L6WzTWBnuDM3LNAZ2iRspJjPaGBR8fqAWrRypRmd-rXl8X0l4ZhmM_G6Sn0YgpR0L_lqiRksN_IYS7_zUeP5tgvfBoE{% endif %}"/>
+          <div>
+            <h4 class="font-bold font-heading text-xl">Мария, сурмама</h4>
+            <p class="text-sm text-slate-500 italic">"Чувствовала заботу на каждом шагу"</p>
+          </div>
+        </div>
+        <p class="text-lg italic leading-relaxed">"Благодаря программе я не только помогла прекрасной паре, но и обеспечила будущее своим детям. Кураторы в Тбилиси стали для меня почти семьей. Никаких тревог, только поддержка."</p>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<section class="py-24 px-6 bg-[var(--muted-green)]/40">
+  <div class="max-w-3xl mx-auto space-y-12">
+    <h2 class="text-3xl font-bold font-heading text-center">Частые вопросы с любовью и честностью</h2>
+    <div class="space-y-4">
+      {% for item in faq_list %}
+      <details class="group bg-white rounded-3xl p-6 shadow-sm cursor-pointer">
+        <summary class="flex justify-between items-center font-bold font-heading list-none">
+          {{ item.question }}
+          <span class="material-symbols-outlined group-open:rotate-180 transition-transform text-[var(--soft-green)]">expand_more</span>
+        </summary>
+        <div class="mt-4 text-slate-600 leading-relaxed font-serif">
+          {{ item.answer|linebreaks }}
+        </div>
+      </details>
+      {% empty %}
+      <details class="group bg-white rounded-3xl p-6 shadow-sm cursor-pointer">
+        <summary class="flex justify-between items-center font-bold font-heading list-none">
+          Как вы заботитесь о моем здоровье?
+          <span class="material-symbols-outlined group-open:rotate-180 transition-transform text-[var(--soft-green)]">expand_more</span>
+        </summary>
+        <div class="mt-4 text-slate-600 leading-relaxed font-serif">
+          Мы сотрудничаем только с аккредитованными клиниками и лучшими репродуктологами. Вы проходите тщательный скрининг, а во время программы мы обеспечиваем лучшее питание, витамины и постоянный медицинский контроль. Ваше здоровье — наш приоритет №1.
+        </div>
+      </details>
+      <details class="group bg-white rounded-3xl p-6 shadow-sm cursor-pointer">
+        <summary class="flex justify-between items-center font-bold font-heading list-none">
+          Нужно ли мне будет уезжать от семьи?
+          <span class="material-symbols-outlined group-open:rotate-180 transition-transform text-[var(--soft-green)]">expand_more</span>
+        </summary>
+        <div class="mt-4 text-slate-600 leading-relaxed font-serif">
+          Для донорства яйцеклеток требуется короткий визит (около 10-12 дней). Для суррогатного материнства возможен переезд в Тбилиси или Бишкек на время беременности, где мы предоставляем комфортное жилье, где вы сможете находиться со своими детьми.
+        </div>
+      </details>
+      <details class="group bg-white rounded-3xl p-6 shadow-sm cursor-pointer">
+        <summary class="flex justify-between items-center font-bold font-heading list-none">
+          Это законно и безопасно?
+          <span class="material-symbols-outlined group-open:rotate-180 transition-transform text-[var(--soft-green)]">expand_more</span>
+        </summary>
+        <div class="mt-4 text-slate-600 leading-relaxed font-serif">
+          Абсолютно. В Грузии и Кыргызстане суррогатное материнство и донорство полностью легальны. Мы оформляем нотариально заверенные договора, которые защищают ваши права и гарантируют выплату вознаграждения в полном объеме.
+        </div>
+      </details>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="py-32 px-6 relative text-center">
+  <div class="blob-bg w-[600px] h-[600px] bg-[var(--warm-peach)] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 organic-border"></div>
+  <div class="max-w-4xl mx-auto space-y-10 relative">
+    <h2 class="text-5xl font-extrabold font-heading text-[var(--text-main)]">Сделаем этот шаг вместе?</h2>
+    <p class="text-2xl italic text-slate-600">Ваша история начинается с простого и теплого разговора.</p>
+    <div class="pt-6">
+      <a href="{% url 'home' %}#about" class="nurturing-btn text-xl px-12 py-6 font-heading inline-block">Записаться на встречу</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

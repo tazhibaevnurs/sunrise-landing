@@ -1,0 +1,44 @@
+{% extends 'main/base.html' %}
+{% block title %}Суррогатное материнство — Sunrise Family{% endblock %}
+{% block content %}
+<section class="relative w-full min-h-[70vh] flex items-center justify-center pt-24 pb-16 px-6 overflow-hidden" style="font-family: 'Outfit', sans-serif;">
+  <img alt="Суррогатное материнство" class="absolute inset-0 w-full h-full object-cover" src="{% if images.surrogacy %}{{ images.surrogacy.url }}{% else %}/media/site_images/hero-placeholder.jpg{% endif %}"/>
+  <div class="absolute inset-0 bg-[var(--hero-earth)]/50"></div>
+  <div class="relative z-10 text-center text-white max-w-4xl mx-auto">
+    <h1 class="text-4xl sm:text-5xl md:text-6xl font-semibold leading-tight tracking-tight">Суррогатное материнство</h1>
+    <p class="mt-6 text-xl sm:text-2xl opacity-95 serif-font italic text-white/95">38 недель · вознаграждение от $20 000</p>
+  </div>
+</section>
+
+<section class="py-24 px-6">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row-reverse items-center gap-16">
+    <div class="w-full md:w-1/2 space-y-8">
+      <h2 class="text-4xl font-bold font-heading text-[var(--text-main)]">Путь героя: Суррогатное материнство</h2>
+      <p class="text-lg leading-relaxed serif-font">Это история о высшем проявлении человечности. Мы станем вашей опорой 24/7, обеспечим комфортное жильё, лучшее питание и психологическую поддержку.</p>
+      <ul class="space-y-4">
+        <li class="flex items-center gap-3"><span class="material-symbols-outlined text-[var(--soft-green)]">check_circle</span> Компенсация от $20 000</li>
+        <li class="flex items-center gap-3"><span class="material-symbols-outlined text-[var(--soft-green)]">check_circle</span> Личный куратор и психолог</li>
+        <li class="flex items-center gap-3"><span class="material-symbols-outlined text-[var(--soft-green)]">check_circle</span> Программы в Тбилиси и Бишкеке</li>
+      </ul>
+      <div class="bg-[var(--warm-peach)] p-8 rounded-[2.5rem] shadow-inner space-y-6 border border-[var(--deep-peach)]/50">
+        <div class="space-y-2">
+          <h3 class="font-heading font-bold text-xl text-[var(--text-main)]">Начать душевный диалог</h3>
+          <p class="text-sm text-slate-600 italic serif-font">Мы свяжемся с вами, чтобы мягко ответить на все ваши вопросы.</p>
+        </div>
+        <form method="post" action="" class="space-y-4">
+          {% csrf_token %}
+          {{ surrogacy_form.name }}
+          <div class="grid grid-cols-2 gap-4">
+            {{ surrogacy_form.phone }}
+            {{ surrogacy_form.city }}
+          </div>
+          <button class="w-full nurturing-btn font-heading text-sm py-4" type="submit">Стать частью чуда</button>
+        </form>
+      </div>
+    </div>
+    <div class="w-full md:w-1/2">
+      <img alt="Суррогатное материнство" class="rounded-[3rem] shadow-xl w-full editorial-shadow" src="{% if images.surrogacy %}{{ images.surrogacy.url }}{% else %}/media/site_images/hero-placeholder.jpg{% endif %}"/>
+    </div>
+  </div>
+</section>
+{% endblock %}
