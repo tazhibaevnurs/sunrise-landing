@@ -5,38 +5,142 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>{% block title %}Sunrise Family — Путь к новой жизни в атмосфере заботы{% endblock %}</title>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&amp;family=Lora:ital,wght@0,400;0,500;0,600;1,400&amp;display=swap" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&amp;family=Lora:ital,wght@0,400;1,400&amp;display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&amp;family=Lora:ital,wght@0,400;0,500;0,600;1,400&amp;display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-  <style type="text/tailwindcss">
+  <!-- Обычный CSS: CDN Tailwind часто не компилирует @apply с var() в type="text/tailwindcss" — из‑за этого «не подтягивается» весь дизайн -->
+  <style>
     :root {
-      --soft-green: #5a7d71;
-      --muted-green: #e9f0ee;
-      --warm-peach: #fcece4;
-      --deep-peach: #f4d0c1;
-      --cream-white: #fdfbf7;
-      --text-main: #3d4644;
-      --hero-earth: #3f4238;
-      --hero-accent: #f4a261;
-      --hero-muted: #6b705c;
-      --hero-soft-peach: #fff1e6;
+      --soft-green: #4a6f62;
+      --soft-green-hover: #3d5d52;
+      --muted-green: #e4ede9;
+      --warm-peach: #fae8de;
+      --deep-peach: #e8b8a4;
+      --cream-white: #faf8f4;
+      --text-main: #2d3331;
+      --hero-earth: #2a2d26;
+      --hero-accent: #e8956a;
+      --hero-muted: #5c6154;
+      --hero-soft-peach: #fff5ed;
+      --radius-xl: 1.75rem;
+      --radius-2xl: 2.25rem;
     }
+    html { scroll-behavior: smooth; }
     body { font-family: 'Lora', serif; background-color: var(--cream-white); color: var(--text-main); }
-    h1, h2, h3, h4, h5, h6, .font-heading { font-family: 'Nunito', sans-serif; }
+    ::selection { background-color: rgba(74, 111, 98, 0.22); color: var(--text-main); }
+    h1, h2, h3, h4, h5, h6, .font-heading { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; letter-spacing: -0.02em; }
     .organic-border { border-radius: 40% 60% 60% 40% / 40% 40% 60% 60%; }
     .flowing-gradient { background: linear-gradient(180deg, var(--cream-white) 0%, var(--muted-green) 100%); }
-    .soft-card { background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.4); box-shadow: 0 10px 30px rgba(90, 125, 113, 0.05); }
-    .nurturing-btn { @apply px-8 py-4 rounded-full font-bold transition-all duration-300 transform hover:scale-105; background-color: var(--soft-green); color: white; box-shadow: 0 10px 20px rgba(90, 125, 113, 0.2); }
-    .nurturing-btn-alt { @apply px-8 py-4 rounded-full font-bold transition-all duration-300 transform hover:scale-105 border-2; border-color: var(--soft-green); color: var(--soft-green); }
-    .blob-bg { position: absolute; z-index: -1; filter: blur(60px); opacity: 0.4; }
-    .interest-form-input { @apply w-full bg-white/50 border-none rounded-2xl px-6 py-4 focus:ring-2 focus:ring-[var(--soft-green)] transition-all placeholder:text-slate-400 font-heading; }
+    .site-container {
+      width: 100%;
+      max-width: 80rem;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    @media (min-width: 640px) {
+      .site-container { padding-left: 1.5rem; padding-right: 1.5rem; }
+    }
+    @media (min-width: 1024px) {
+      .site-container { padding-left: 2rem; padding-right: 2rem; }
+    }
+    .section-y { padding-top: 5rem; padding-bottom: 5rem; }
+    @media (min-width: 768px) {
+      .section-y { padding-top: 7rem; padding-bottom: 7rem; }
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      line-height: 1rem;
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+    .card-surface {
+      border-radius: var(--radius-xl);
+      background-color: #fff;
+      border: 1px solid var(--muted-green);
+      box-shadow: 0 4px 24px -8px rgba(45, 51, 49, 0.12);
+    }
+    .soft-card {
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0 12px 40px -12px rgba(74, 111, 98, 0.12);
+    }
+    .nurturing-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 1rem 2rem;
+      border-radius: 9999px;
+      font-weight: 700;
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+      background-color: var(--soft-green);
+      color: #fff;
+      box-shadow: 0 8px 24px -4px rgba(74, 111, 98, 0.35);
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .nurturing-btn:hover {
+      background-color: var(--soft-green-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 12px 28px -4px rgba(74, 111, 98, 0.4);
+    }
+    .nurturing-btn-alt {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 1rem 2rem;
+      border-radius: 9999px;
+      font-weight: 700;
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      transition: background-color 0.2s, border-color 0.2s;
+      border: 2px solid var(--soft-green);
+      background-color: rgba(255, 255, 255, 0.88);
+      color: var(--soft-green);
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .nurturing-btn-alt:hover { background-color: var(--muted-green); }
+    .blob-bg { position: absolute; z-index: -1; filter: blur(60px); opacity: 0.45; }
+    .interest-form-input {
+      width: 100%;
+      background: #fff;
+      border: 1px solid var(--muted-green);
+      border-radius: 1rem;
+      padding: 0.875rem 1.25rem;
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      font-size: 1rem;
+      color: var(--text-main);
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .interest-form-input::placeholder { color: #94a3b8; }
+    .interest-form-input:focus {
+      outline: none;
+      border-color: var(--soft-green);
+      box-shadow: 0 0 0 3px rgba(74, 111, 98, 0.2);
+    }
     .line-clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
     .line-clamp-4 { display: -webkit-box; -webkit-line-clamp: 4; line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
     .serif-font { font-family: 'Lora', serif; }
-    .editorial-shadow { box-shadow: 0 20px 50px -12px rgba(107, 112, 92, 0.15); }
-    .hero-card-radius { border-radius: 2rem; }
-    .image-overlay { background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 40%, transparent 100%); }
+    .editorial-shadow { box-shadow: 0 24px 56px -16px rgba(45, 51, 49, 0.18); }
+    .hero-card-radius { border-radius: var(--radius-2xl); }
+    .image-overlay { background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.25) 45%, transparent 100%); }
     .about-company-banner { width: 100vw; margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%); }
+    @keyframes fade-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+    .animate-fade-in { animation: fade-in 0.45s ease-out forwards; }
   </style>
   {% block extra_css %}{% endblock %}
 </head>
@@ -63,62 +167,69 @@
 </script>
 {% endif %}
 
-<nav class="fixed top-0 w-full z-50 px-6 py-4">
-  <div class="max-w-7xl mx-auto flex items-center justify-between bg-white/70 backdrop-blur-md rounded-full px-8 py-3 shadow-sm border border-white/40">
-    <a href="{% url 'home' %}" class="flex items-center gap-2">
-      <span class="material-symbols-outlined text-[var(--soft-green)]">favorite</span>
-      <span class="text-xl font-extrabold tracking-tight text-[var(--soft-green)] font-heading">Sunrise Family</span>
+<nav class="fixed top-0 inset-x-0 z-50 px-4 sm:px-6 pt-4">
+  <div class="site-container max-w-6xl flex flex-wrap items-center justify-between gap-3 bg-white/85 backdrop-blur-xl rounded-2xl px-5 sm:px-7 py-3 shadow-[0_8px_32px_-12px_rgba(45,51,49,0.15)] border border-[var(--muted-green)]/80">
+    <a href="{% url 'home' %}" class="flex items-center gap-2.5 group">
+      <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-[var(--soft-green)] text-white shadow-md group-hover:scale-105 transition-transform">
+        <span class="material-symbols-outlined text-lg">favorite</span>
+      </span>
+      <span class="text-lg font-extrabold text-[var(--text-main)] font-heading tracking-tight">Sunrise <span class="text-[var(--soft-green)]">Family</span></span>
     </a>
-    <div class="hidden md:flex items-center gap-10 font-heading text-sm font-semibold">
-      <a class="hover:text-[var(--soft-green)] transition-colors" href="{% url 'home' %}#about">О нас</a>
-      <a class="hover:text-[var(--soft-green)] transition-colors" href="{% url 'donation' %}">Донорство</a>
-      <a class="hover:text-[var(--soft-green)] transition-colors" href="{% url 'surrogacy' %}">Сурматеринство</a>
-      <a class="hover:text-[var(--soft-green)] transition-colors" href="{% url 'home' %}#stories">Истории</a>
+    <div class="hidden md:flex items-center gap-1 lg:gap-2 font-heading text-sm font-semibold text-slate-600">
+      <a class="px-3 py-2 rounded-xl hover:bg-[var(--muted-green)] hover:text-[var(--soft-green)] transition-colors" href="{% url 'home' %}#about">О нас</a>
+      <a class="px-3 py-2 rounded-xl hover:bg-[var(--muted-green)] hover:text-[var(--soft-green)] transition-colors" href="{% url 'donation' %}">Донорство</a>
+      <a class="px-3 py-2 rounded-xl hover:bg-[var(--muted-green)] hover:text-[var(--soft-green)] transition-colors" href="{% url 'surrogacy' %}">Сурматеринство</a>
+      <a class="px-3 py-2 rounded-xl hover:bg-[var(--muted-green)] hover:text-[var(--soft-green)] transition-colors" href="{% url 'home' %}#stories">Истории</a>
     </div>
-    <a href="{% url 'home' %}" class="bg-[var(--soft-green)] text-white px-6 py-2 rounded-full text-sm font-bold font-heading hover:brightness-110 transition-all">Обнять будущее</a>
+    <a href="{% url 'home' %}#about" class="shrink-0 bg-[var(--soft-green)] text-white px-5 py-2.5 rounded-xl text-sm font-bold font-heading shadow-md hover:bg-[var(--soft-green-hover)] transition-colors">Связаться</a>
   </div>
 </nav>
 
 {% block content %}{% endblock %}
 
-<footer class="bg-white border-t border-[var(--muted-green)] py-16 px-6">
-  <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12">
-    <div class="col-span-1 md:col-span-1 space-y-6">
-      <div class="flex items-center gap-2">
-        <span class="material-symbols-outlined text-[var(--soft-green)]">favorite</span>
-        <span class="text-xl font-extrabold tracking-tight text-[var(--soft-green)] font-heading">Sunrise Family</span>
+<footer class="relative mt-8 bg-[var(--text-main)] text-stone-200 overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-br from-[var(--soft-green)]/20 via-transparent to-[var(--deep-peach)]/10 pointer-events-none" aria-hidden="true"></div>
+  <div class="site-container relative py-16 md:py-20">
+    <div class="grid md:grid-cols-12 gap-12 md:gap-10">
+      <div class="md:col-span-5 space-y-6">
+        <div class="flex items-center gap-3">
+          <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--soft-green)] text-white shadow-lg">
+            <span class="material-symbols-outlined">favorite</span>
+          </span>
+          <span class="text-xl font-extrabold font-heading text-white tracking-tight">Sunrise Family</span>
+        </div>
+        <p class="text-sm text-stone-400 leading-relaxed max-w-md">
+          {% if contact.footer_description %}{{ contact.footer_description }}{% else %}Лицензированное агентство репродуктивной помощи. Мы объединяем сердца и создаём будущее с 2016 года.{% endif %}
+        </p>
       </div>
-      <p class="text-sm text-slate-500 leading-relaxed">
-        {% if contact.footer_description %}{{ contact.footer_description }}{% else %}Лицензированное агентство репродуктивной помощи. Мы объединяем сердца и создаем будущее с 2016 года.{% endif %}
-      </p>
-    </div>
-    <div>
-      <h5 class="font-heading font-bold mb-6 text-[var(--soft-green)] uppercase text-xs tracking-widest">Контакты</h5>
-      <ul class="text-sm space-y-3 font-heading">
-        <li class="flex items-center gap-2"><span class="material-symbols-outlined text-xs">location_on</span> {% if contact.address_1 %}{{ contact.address_1 }}{% else %}Тбилиси, Грузия{% endif %}</li>
-        <li class="flex items-center gap-2"><span class="material-symbols-outlined text-xs">location_on</span> {% if contact.address_2 %}{{ contact.address_2 }}{% else %}Бишкек, Кыргызстан{% endif %}</li>
-        <li class="font-bold text-[var(--soft-green)] text-lg">{% if contact.phone %}{{ contact.phone }}{% else %}+7 (900) 000-00-00{% endif %}</li>
-        {% if contact.email %}<li class="flex items-center gap-2"><span class="material-symbols-outlined text-xs">mail</span> {{ contact.email }}</li>{% endif %}
-      </ul>
-    </div>
-    <div>
-      <h5 class="font-heading font-bold mb-6 text-[var(--soft-green)] uppercase text-xs tracking-widest">Информация</h5>
-      <ul class="text-sm space-y-3 font-heading">
-        <li><a class="hover:text-[var(--soft-green)] transition-colors" href="{% url 'donation' %}">Донорство</a></li>
-        <li><a class="hover:text-[var(--soft-green)] transition-colors" href="{% url 'surrogacy' %}">Суррогатное материнство</a></li>
-        <li><a class="hover:text-[var(--soft-green)] transition-colors" href="{% url 'home' %}#about">О нас</a></li>
-      </ul>
-    </div>
-    <div>
-      <h5 class="font-heading font-bold mb-6 text-[var(--soft-green)] uppercase text-xs tracking-widest">Сообщество</h5>
-      <div class="flex gap-4">
-        <a class="w-10 h-10 rounded-full bg-[var(--muted-green)] flex items-center justify-center text-[var(--soft-green)] hover:bg-[var(--soft-green)] hover:text-white transition-all" href="#"><span class="material-symbols-outlined text-lg">chat</span></a>
-        <a class="w-10 h-10 rounded-full bg-[var(--muted-green)] flex items-center justify-center text-[var(--soft-green)] hover:bg-[var(--soft-green)] hover:text-white transition-all" href="#"><span class="material-symbols-outlined text-lg">public</span></a>
+      <div class="md:col-span-3">
+        <h5 class="font-heading font-bold mb-5 text-[var(--warm-peach)] text-xs uppercase tracking-[0.2em]">Контакты</h5>
+        <ul class="text-sm space-y-4 font-heading text-stone-300">
+          <li class="flex items-start gap-2"><span class="material-symbols-outlined text-base text-[var(--soft-green)] shrink-0">location_on</span> {% if contact.address_1 %}{{ contact.address_1 }}{% else %}Тбилиси, Грузия{% endif %}</li>
+          <li class="flex items-start gap-2"><span class="material-symbols-outlined text-base text-[var(--soft-green)] shrink-0">location_on</span> {% if contact.address_2 %}{{ contact.address_2 }}{% else %}Бишкек, Кыргызстан{% endif %}</li>
+          <li class="font-bold text-white text-lg pt-1">{% if contact.phone %}{{ contact.phone }}{% else %}+7 (900) 000-00-00{% endif %}</li>
+          {% if contact.email %}<li class="flex items-center gap-2"><span class="material-symbols-outlined text-base text-[var(--soft-green)]">mail</span> {{ contact.email }}</li>{% endif %}
+        </ul>
+      </div>
+      <div class="md:col-span-2">
+        <h5 class="font-heading font-bold mb-5 text-[var(--warm-peach)] text-xs uppercase tracking-[0.2em]">Разделы</h5>
+        <ul class="text-sm space-y-3 font-heading">
+          <li><a class="text-stone-300 hover:text-white transition-colors" href="{% url 'donation' %}">Донорство</a></li>
+          <li><a class="text-stone-300 hover:text-white transition-colors" href="{% url 'surrogacy' %}">Суррогатное материнство</a></li>
+          <li><a class="text-stone-300 hover:text-white transition-colors" href="{% url 'home' %}#about">О нас</a></li>
+        </ul>
+      </div>
+      <div class="md:col-span-2">
+        <h5 class="font-heading font-bold mb-5 text-[var(--warm-peach)] text-xs uppercase tracking-[0.2em]">Соцсети</h5>
+        <div class="flex gap-3">
+          <a class="w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center text-stone-200 hover:bg-[var(--soft-green)] hover:text-white transition-all border border-white/10" href="#" aria-label="Чат"><span class="material-symbols-outlined text-lg">chat</span></a>
+          <a class="w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center text-stone-200 hover:bg-[var(--soft-green)] hover:text-white transition-all border border-white/10" href="#" aria-label="Соцсеть"><span class="material-symbols-outlined text-lg">public</span></a>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="max-w-7xl mx-auto pt-12 mt-12 border-t border-[var(--muted-green)] text-center text-xs text-slate-400 font-heading uppercase tracking-widest">
-    {% if contact.copyright_text %}{{ contact.copyright_text }}{% else %}© 2016 - 2026 Sunrise Family • Сделано с любовью и заботой о жизни{% endif %}
+    <div class="pt-12 mt-12 border-t border-white/10 text-center text-xs text-stone-500 font-heading uppercase tracking-widest">
+      {% if contact.copyright_text %}{{ contact.copyright_text }}{% else %}© 2016 — 2026 Sunrise Family · Сделано с любовью и заботой о жизни{% endif %}
+    </div>
   </div>
 </footer>
 </body>
