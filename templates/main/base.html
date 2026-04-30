@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>{% block title %}Sunrise Family — Путь к новой жизни в атмосфере заботы{% endblock %}</title>
+  <title>{% block title %}Sunrise Family — программы донорства и суррогатного материнства{% endblock %}</title>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&amp;family=Lora:ital,wght@0,400;0,500;0,600;1,400&amp;display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&amp;family=Lora:ital,wght@0,400;1,400&amp;display=swap" rel="stylesheet"/>
@@ -75,7 +75,7 @@
       <a class="hover:text-[var(--soft-green)] transition-colors" href="{% url 'surrogacy' %}">Сурматеринство</a>
       <a class="hover:text-[var(--soft-green)] transition-colors" href="{% url 'home' %}#stories">Истории</a>
     </div>
-    <a href="{% url 'home' %}" class="bg-[var(--soft-green)] text-white px-6 py-2 rounded-full text-sm font-bold font-heading hover:brightness-110 transition-all">Обнять будущее</a>
+    <a href="{% url 'home' %}#about" class="bg-[var(--soft-green)] text-white px-6 py-2 rounded-full text-sm font-bold font-heading hover:brightness-110 transition-all">Начать разговор</a>
   </div>
 </nav>
 
@@ -89,7 +89,7 @@
         <span class="text-xl font-extrabold tracking-tight text-[var(--soft-green)] font-heading">Sunrise Family</span>
       </div>
       <p class="text-sm text-slate-500 leading-relaxed">
-        {% if contact.footer_description %}{{ contact.footer_description }}{% else %}Лицензированное агентство репродуктивной помощи. Мы объединяем сердца и создаем будущее с 2016 года.{% endif %}
+        {% if contact.footer_description %}{{ contact.footer_description }}{% else %}Авторские программы донорства яйцеклеток и суррогатного материнства: сопровождение, прозрачный договор и опора на каждом этапе — с 2016 года.{% endif %}
       </p>
     </div>
     <div>
